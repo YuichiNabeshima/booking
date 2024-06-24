@@ -1,0 +1,20 @@
+@import '/app/styles/media.css';
+
+.pa-bg {
+  background-image: radial-gradient(rgba(168, 202, 240, 1), rgba(233, 240, 250, 1));
+  min-height: 100vh;
+}
+
+.pa-container {
+  margin: 0 auto;
+
+  @mixin pc {
+    width: 1360px;
+    padding: 120px 80px;
+  }
+  @mixin sp {
+    width: 95%;
+    min-width: 335px;
+    padding: 60px 0;
+  }
+}

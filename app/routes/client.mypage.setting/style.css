@@ -1,0 +1,270 @@
+@import '/app/styles/style.css';
+@import '/app/routes/client/style.css';
+
+@import '/app/routes/client.mypage/style.css';
+@import '/app/routes/client.mypage/header/style.css';
+
+.pa-wrapper {
+  @mixin pc {
+    margin: 20px 0;
+  }
+}
+
+.pa-inner {
+  border: 1px solid var(--colorBorder);
+  border-radius: 16px;
+  background-color: #fff;
+
+  @mixin pc {
+    margin: 20px 0;
+    padding: 40px 0;
+  }
+  @mixin sp {
+    padding: 24px 8px;
+  }
+}
+
+.pa-heading {
+  font-weight: 700;
+  text-align: center;
+
+  @mixin pc {
+    font-size: 2.4rem;
+  }
+  @mixin sp {
+    font-size: 2rem;
+  }
+}
+
+.pa-form {
+  @mixin pc {
+    margin-top: 36px;
+  }
+  @mixin sp {
+    margin-top: 24px;
+  }
+}
+
+.pa-global-msg {
+  margin: 0 auto;
+  color: var(--colorError);
+  font-weight: 700;
+
+  @mixin pc {
+    width: 480px;
+    font-size: 2rem;
+  }
+}
+
+.pa-form-items {
+  display: flex;
+  flex-direction: column;
+
+  @mixin pc {
+    width: 960px;
+    margin: 24px auto 0;
+    gap: 24px 0;
+  }
+  @mixin sp {
+    gap: 20px 0;
+  }
+}
+
+.pa-form-item {
+  @mixin pc {
+    width: 460px;
+  }
+  @mixin sp {
+    width: 100%;
+    overflow-x: scroll;
+  }
+
+  & + & {
+    @mixin sp {
+      margin-top: 24px;
+    }
+  }
+}
+
+.pa-form-item__heading {
+  font-weight: 700;
+
+  @mixin pc {
+    font-size: 2.4rem;
+  }
+  @mixin sp {
+    font-size: 2rem;
+  }
+}
+
+.pa-form-item__table-inner {
+  @mixin sp {
+    overflow-x: scroll;
+    width: 100%;
+  }
+}
+
+.pa-form-item-unit {
+  @mixin pc {
+    display: flex;
+    justify-content: space-between;
+  }
+  & + & {
+    @mixin sp {
+      margin-top: 28px;
+    }
+  }
+}
+
+.pa-form-item__label {
+  font-weight: 700;
+}
+
+.pa-form-item__input {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  border: 1px solid var(--colorBorder);
+  border-radius: 4px;
+
+  @mixin pc {
+    padding: 16px;
+  }
+  @mixin sp {
+    padding: 8px 12px;
+  }
+}
+
+.pa-form-btn {
+  display: block;
+  border: 1px solid var(--colorSkyBlue);
+  border-radius: 8px;
+  background-color: var(--colorSkyBlue);
+  color: #fff;
+  text-align: center;
+  transition-property: background-color, color;
+  transition-duration: .3s;
+
+  @mixin pc {
+    width: 300px;
+    margin: 24px auto 0;
+    padding: 12px 16px;
+    font-size: 2rem;
+  }
+  @mixin sp {
+    width: 100%;
+    margin-top: 24px;
+    padding: 8px 0;
+  }
+
+  &:hover {
+    @mixin pc {
+      background-color: #fff;
+      color: var(--colorSkyBlue);
+    }
+  }
+}
+
+.pa-unit {
+  display: flex;
+
+  & + & {
+    @mixin pc {
+      margin-top: 8px;
+    }
+    @mixin sp {
+      margin-top: 12px;
+    }
+  }
+}
+
+.pa-unit-input,
+.pa-unit-number {
+  border: 1px solid var(--colorBorder);
+
+  @mixin pc {
+    padding: 8px 16px;
+  }
+  @mixin sp {
+    padding: 8px 12px;
+  }
+}
+
+.pa-unit-input {
+  width: 70%;
+}
+
+.pa-unit-number {
+  width: 15%;
+
+  @mixin sp {
+    padding: 8px 0;
+    text-align: center;
+  }
+}
+
+.pa-unit-delete-btn {
+  width: 13%;
+  border-radius: 8px;
+  background-color: var(--colorError);
+  color: #fff;
+  text-align: center;
+
+  @mixin pc {
+    margin-left: auto;
+    padding: 8px 0;
+  }
+  @mixin sp {
+    margin-left: auto;
+  }
+}
+
+.pa-unit-add-btn {
+  display: block;
+  border-radius: 8px;
+  background-color: var(--colorSkyBlue);
+  color: #fff;
+  text-align: center;
+
+  @mixin pc {
+    width: 80px;
+    margin-top: 16px;
+    padding: 8px 0;
+  }
+  @mixin sp {
+    width: 100%;
+    margin-top: 24px;
+    padding: 8px 0;
+  }
+}
+
+.pa-errors {
+  margin-top: 4px;
+  color: var(--colorError);
+  font-weight: 700;
+}
+
+.pa-form-table {
+  border: 1px solid var(--colorBorder);
+
+  th, td {
+    width: 100px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+
+    @mixin sp {
+      padding: 4px;
+      font-size: 1.4rem;
+    }
+  }
+
+  td {
+    border: 1px solid var(--colorBorder);
+    text-align: center;
+  }
+
+  input {
+    width: 40px;
+  }
+}

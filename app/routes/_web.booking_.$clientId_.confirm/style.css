@@ -1,0 +1,112 @@
+@import '/app/styles/style.css';
+
+.main {
+  @mixin pc {
+    padding: 16px 24px;
+    border: 1px solid var(--colorBorder);
+    border-radius: 8px;
+  }
+}
+
+.pa-heading {
+  font-weight: 600;
+
+  @mixin pc {
+    font-size: 3rem;
+  }
+  @mixin sp {
+    font-size: 2.4rem;
+  }
+}
+
+.pa-detail {
+  @mixin pc {
+    margin-top: 28px;
+  }
+  @mixin sp {
+    margin-top: 20px;
+  }
+}
+
+.pa-detail-heading {
+  font-weight: 600;
+
+  @mixin pc {
+    font-size: 2.4rem;
+  }
+  @mixin sp {
+    font-size: 1.8rem;
+  }
+}
+
+.pa-detail-content {
+  @mixin pc {
+    margin-top: 20px;
+  }
+  @mixin sp {
+    margin-top: 12px;
+  }
+}
+
+.pa-detail-unit {
+  & + & {
+    @mixin pc {
+      margin-top: 16px;
+    }
+    @mixin sp {
+      margin-top: 12px;
+    }
+  }
+}
+
+.pa-detail-unit__heading {
+  @mixin pc {
+    font-size: 2rem;
+  }
+  @mixin sp {
+    font-size: 1.6rem;
+  }
+}
+
+.pa-btns {
+  @mixin pc {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+  }
+  @mixin sp {
+    margin-top: 16px;
+  }
+}
+
+.pa-btn {
+  display: block;
+  border-radius: 8px;
+  text-align: center;
+
+  @mixin pc {
+    width: 300px;
+    padding: 16px 0;
+  }
+  @mixin sp {
+    width: 100%;
+    padding: 12px 0;
+  }
+}
+
+.pa-submit {
+  background-color: var(--colorSkyBlue);
+  color: #fff;
+  font-weight: 600;
+}
+
+.pa-cancel {
+  border: 1px solid #000;
+
+  @mixin pc {
+    margin-left: 24px;
+  }
+  @mixin sp {
+    margin-top: 16px;
+  }
+}

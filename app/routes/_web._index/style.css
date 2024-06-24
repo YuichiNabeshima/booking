@@ -1,0 +1,11 @@
+@import '../../styles/reset.css';
+@import '../../styles/var.css';
+@import '../../styles/media.css';
+@import '../../styles/base.css';
+
+.pa-heading {
+  @mixin pc {
+    font-size: 3rem;
+    font-weight: 700;
+  }
+}

@@ -1,0 +1,44 @@
+.pa-client-info {
+  border-radius: 16px;
+  background-color: #fff;
+
+  @mixin pc {
+    margin: 24px 0;
+    padding: 16px 24px;
+  }
+  @mixin sp {
+    margin: 24px 0 16px;
+    padding: 8px 16px;
+  }
+}
+
+.pa-client-info__heading {
+  font-weight: 600;
+
+  @mixin pc {
+    font-size: 4rem;
+  }
+  @mixin sp {
+    font-size: 3rem;
+  }
+}
+
+.pa-info-unit {
+  &:first-of-type {
+    @mixin pc {
+      margin-top: 16px;
+    }
+    @mixin sp {
+      margin-top: 12px;
+    }
+  }
+}
+
+.pa-info-unit__heading {
+  @mixin pc {
+    font-size: 2rem;
+  }
+  @mixin sp {
+    font-size: 1.8rem;
+  }
+}

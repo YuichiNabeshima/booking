@@ -1,0 +1,119 @@
+@import '/app/styles/media.css';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  background-color: #fff;
+
+  @mixin pc {
+    padding: 12px 40px;
+  }
+  @mixin sp {
+    padding: 16px 8px;
+  }
+}
+
+.c-hamburger {
+  position: relative;
+
+  @mixin pc {
+    width: 30px;
+    height: 30px;
+  }
+  @mixin sp {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+.c-hamburger__bar {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  border-radius: 8px;
+  background-color: #000;
+
+  &:nth-of-type(1) {
+    top: 0;
+  }
+
+  &:nth-of-type(2) {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &:nth-of-type(3) {
+    bottom: 0;
+  }
+}
+
+.header-nav {
+  position: fixed;
+  right: 0;
+  z-index: 2;
+  transform: translateX(100%);
+  height: 100%;
+  background-color: #fff;
+  transition-property: transform;
+  transition-duration: .3s;
+
+  @mixin pc {
+    top: 54px;
+    width: 400px;
+    padding: 40px 20px;
+  }
+  @mixin sp {
+    width: 70%;
+    padding: 26px 16px;
+  }
+
+  .is-menu-open & {
+    transform: translateX(0);
+  }
+}
+
+.header-nav-item {
+  display: block;
+  font-weight: 600;
+
+  @mixin pc {
+    font-size: 2.4rem;
+  }
+  @mixin sp {
+    font-size: 2rem;
+  }
+
+  & + & {
+    @mixin pc {
+      margin-top: 36px;
+    }
+    @mixin sp {
+      margin-top: 24px;
+    }
+  }
+}
+
+.header-nav__overlay {
+  visibility: hidden;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  transition-property: opacity;
+  transition-duration: .3s;
+
+  .is-menu-open & {
+    visibility: visible;
+    opacity: .4;
+  }
+}

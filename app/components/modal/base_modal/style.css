@@ -1,0 +1,61 @@
+.c-overlay {
+  visibility: hidden;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+
+  &.is-show-modal {
+    visibility: visible;
+    opacity: .6;
+  }
+}
+
+.c-modal {
+  visibility: hidden;
+  opacity: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 11;
+  transform: translate(-50%, -50%);
+  border-radius: 16px;
+  background-color: #fff;
+  transition-property: opacity;
+  transition-duration: .3s;
+
+  @mixin pc {
+    width: 600px;
+    padding: 40px 20px;
+  }
+  @mixin sp {
+    width: 92%;
+    padding: 12px 8px;
+  }
+
+  &.is-show-modal {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.c-modal-close {
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  border: 2px solid #000;
+  border-radius: 50%;
+  background-color: #fff;
+
+  @mixin pc {
+    padding: 4px;
+    font-size: 2rem;
+  }
+  @mixin sp {
+    font-size: 3rem;
+  }
+}

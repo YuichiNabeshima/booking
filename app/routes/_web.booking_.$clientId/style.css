@@ -1,0 +1,457 @@
+@import '/app/styles/style.css';
+@import '/app/components/modal/base_modal/style.css';
+
+.main {
+  border: 1px solid var(--colorBorder);
+  border-radius: 8px;
+  background-color: #fff;
+
+  @mixin pc {
+    margin-top: 40px;
+    padding: 40px 120px;
+  }
+  @mixin sp {
+    padding: 8px;
+  }
+}
+
+.pa-heading {
+  font-weight: 700;
+
+  @mixin pc {
+    font-size: 2.4rem;
+  }
+  @mixin sp {
+    font-size: 2rem;
+  }
+}
+
+.pa-form {
+  @mixin pc {
+    margin-top: 40px;
+  }
+  @mixin sp {
+    margin-top: 32px;
+  }
+}
+
+.pa-form-item {
+  & + & {
+    @mixin pc {
+      margin-top: 40px;
+    }
+    @mixin sp {
+      margin-top: 32px;
+    }
+  }
+}
+
+.pa-form-item-heading {
+  @mixin pc {
+    width: 80px;
+  }
+}
+
+.pa-form-item__input {
+  display: block;
+  border: 1px solid var(--colorBorder);
+
+  @mixin pc {
+    margin-left: 80px;
+    padding: 4px 8px;
+  }
+
+  .pa-form-item--nop & {
+    width: 60px;
+    text-align: center;
+  }
+}
+
+.pa-form-item__inner {
+  @mixin pc {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.pa-form-radio-items {
+  display: flex;
+
+  @mixin pc {
+    gap: 0 32px;
+    margin-left: 80px;
+  }
+  @mixin sp {
+    gap: 0 32px;
+  }
+}
+
+.pa-form-radio-item {
+  display: block;
+}
+
+.pa-form-radio-item__input {
+  display: none;
+}
+
+.pa-form-radio-item__label {
+  position: relative;
+
+  @mixin pc {
+    padding-right: 30px;
+  }
+  @mixin sp {
+    padding-right: 30px;
+  }
+
+  &::before, &::after {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    content: '';
+  }
+
+  &::before {
+    border: 1px solid var(--colorBorder);
+
+    @mixin pc {
+      right: 0;
+      width: 24px;
+      height: 24px;
+    }
+    @mixin sp {
+      right: 0;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &::after {
+    @mixin pc {
+      right: 4px;
+      width: 16px;
+      height: 16px;
+    }
+    @mixin sp {
+      right: 4px;
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  .pa-form-radio-item__input:checked + & {
+    &::after {
+      background-color: var(--colorSkyBlue);
+    }
+  }
+}
+
+.pa-form-item__select {
+  border: 1px solid var(--colorBorder);
+
+  @mixin pc {
+    width: 200px;
+    margin-left: 80px;
+    padding: 4px 8px;
+  }
+  @mixin sp {
+    display: block;
+    width: 100%;
+    min-height: 42px;
+    margin-top: 4px;
+    padding: 8px 16px;
+  }
+}
+
+.pa-form-item__date {
+  @mixin sp {
+    width: 100%;
+    min-height: 42px;
+    margin-top: 4px;
+    padding: 8px 16px;
+  }
+}
+
+.pa-form-table-item-wrapper {
+  overflow-y: scroll;
+  padding: 50px 0;
+}
+
+.pa-form-table-item {
+  @mixin pc {
+    /* min-height: 400px; */
+    margin-top: 40px;
+  }
+  @mixin sp {
+    overflow-x: scroll;
+    width: 100%;
+    height: 400px;
+    margin-top: 32px;
+  }
+}
+
+.pa-form-table {
+  border-collapse: separate;
+  border-spacing: 0px;
+
+  tr:nth-of-type(4n + 1) {
+    td {
+      border-top: 2px solid #000;
+    }
+  }
+
+  th, td {
+    text-align: center;
+  }
+
+  th {
+    height: 15px;
+  }
+
+  td {
+    position: relative;
+    border-right: 1px solid var(--colorBorder);
+    border-bottom: 1px solid var(--colorBorder);
+    line-height: 1;
+
+    @mixin pc {
+      width: 120px;
+      height: 30px;
+    }
+    @mixin sp {
+      width: 80px;
+      height: 30px;
+    }
+  }
+
+  tbody td {
+    &:nth-of-type(1) {
+      position: sticky;
+      position: -webkit-sticky;
+      left: 0;
+      z-index: 1;
+      border-top: 0;
+      border-bottom: 0;
+      background-color: #fff;
+    }
+  }
+
+  .pa-time-table-heading {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 2;
+    padding: 4px 8px 8px;
+    background-color: #fff;
+    font-weight: 600;
+
+    @mixin pc {
+      font-size: 1.6rem;
+    }
+
+    &:nth-of-type(1) {
+      border-bottom: 0;
+      background-color: transparent;
+    }
+  }
+
+  .pa-time-table-scale-inner {
+    position: relative;
+    font-weight: 600;
+    font-size: 1.2rem;
+
+    @mixin pc {
+      top: -10px;
+      padding: 4px;
+    }
+    @mixin sp {
+      top: -12px;
+      padding: 4px;
+    }
+  }
+
+  .pa-time-table-scale-inner--large {
+    font-size: 1.6rem;
+  }
+
+  .pa-time-table-input {
+    width: 100%;
+    height: 100%;
+  }
+
+  .pa-time-table-booking {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    pointer-events: none;
+    border-radius: 8px;
+  }
+
+  input:checked ~ .pa-time-table-booking {
+    border: 3px solid var(--colorSkyBlue);
+    background-color: rgba(74, 177, 204, .3);
+  }
+
+  label {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    font-size: 0;
+
+    &::before, &::after {
+      position: absolute;
+      border-radius: 50%;
+      content: '';
+    }
+
+    &::before {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 18px;
+      height: 18px;
+      border: 1px solid var(--colorBorder);
+    }
+
+    &::after {
+      top: 3px;
+      left: 3px;
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  .is-ng + label {
+    display: none;
+  }
+
+  input {
+    display: none;
+  }
+}
+
+.pa-confirm-btn {
+  display: block;
+  border-radius: 8px;
+  background-color: var(--colorSkyBlue);
+  color: #fff;
+  font-size: 2rem;
+  text-align: center;
+
+  @mixin pc {
+    width: 300px;
+    margin: 20px auto 0;
+    padding: 16px 0;
+  }
+  @mixin sp {
+    width: 100%;
+    margin: 20px auto 0;
+    padding: 16px 0;
+  }
+}
+
+.pa-modal-intro {
+  @mixin pc {
+    font-size: 2rem;
+    text-align: center;
+  }
+  @mixin sp {
+    font-size: 1.8rem;
+  }
+}
+
+.pa-modal-items {
+  @mixin pc {
+    margin-top: 20px;
+  }
+  @mixin sp {
+    margin-top: 16px;
+  }
+}
+
+.pa-modal-item {
+  @mixin pc {
+    display: flex;
+    align-items: center;
+  }
+
+  label {
+    @mixin pc {
+      width: 120px;
+    }
+    @mixin sp {
+      width: 100%;
+    }
+  }
+
+  input {
+    border: 1px solid var(--colorBorder);
+
+    @mixin pc {
+      flex: 1 0 0;
+      margin-left: 16px;
+      padding: 4px 8px;
+    }
+    @mixin sp {
+      width: 100%;
+      padding: 4px 8px;
+    }
+  }
+
+  & + & {
+    @mixin pc {
+      margin-top: 26px;
+    }
+    @mixin sp {
+      margin-top: 20px;
+    }
+  }
+}
+
+input[type="date"] {
+  @mixin sp {
+    width: 100%;
+  }
+}
+
+.pa-modal-submit {
+  display: block;
+  border-radius: 8px;
+  background-color: var(--colorSkyBlue);
+  color: #fff;
+  text-align: center;
+
+  @mixin pc {
+    width: 200px;
+    margin: 28px auto 0;
+    padding: 10px 0;
+    font-size: 1.8rem;
+  }
+  @mixin sp {
+    width: 100%;
+    margin-top: 20px;
+    padding: 8px 0;
+  }
+}
+
+.pa-modal-note {
+  margin-top: 16px;
+}
+
+.pa-modal-note__text {
+  @mixin sp {
+    font-size: 1.8rem;
+  }
+}
+
+.pa-modal-note__email {
+  word-wrap: break-word;
+
+  @mixin sp {
+    margin-top: 20px;
+    font-size: 1.4rem;
+  }
+}

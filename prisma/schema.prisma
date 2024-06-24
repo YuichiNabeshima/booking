@@ -1,0 +1,148 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         Int @id @default(autoincrement())
+  name       String @db.VarChar(255)
+  email      String @unique @db.VarChar(255)
+  updated_at DateTime @updatedAt
+  created_at DateTime @default(now())
+
+  @@map("user")
+}
+
+model Client {
+  id                Int @id @default(autoincrement())
+  name              String @db.VarChar(255)
+  email             String @unique @db.VarChar(255)
+  password          String
+  support_single    Boolean @default(true)
+  support_group     Boolean @default(true)
+  capacity_of_group Int @default(4)
+  updated_at        DateTime @updatedAt
+  created_at        DateTime @default(now())
+
+  @@map("client")
+}
+
+model ClientPicture {
+  id            Int @id @default(autoincrement())
+  url           String @db.VarChar(255)
+  alt           String @db.VarChar(255)
+  client_id     Int
+  updated_at    DateTime @updatedAt
+  created_at    DateTime @default(now())
+
+  @@map("client_picture")
+}
+
+model Course {
+  id            Int @id @default(autoincrement())
+  name          String @db.VarChar(255)
+  time_range    String @db.VarChar(10)
+  client_id     Int
+  updated_at    DateTime @updatedAt
+  created_at    DateTime @default(now())
+
+  @@map("course")
+}
+
+enum BookingType {
+  SINGLE
+  GROUP
+}
+
+model Booking {
+  id               Int @id @default(autoincrement())
+  date             DateTime @db.Date
+  start            String @db.VarChar(10)
+  user_id          Int
+  client_id        Int
+  course_id        Int
+  number_of_people Int
+  type             BookingType @default(SINGLE)
+  updated_at       DateTime @updatedAt
+  created_at       DateTime @default(now())
+
+  @@map("booking")
+}
+
+enum DayOfWeek {
+  MON
+  TUE
+  WED
+  THU
+  FRI
+  SAT
+  SUN
+}
+
+model BookingCapacity {
+  id           Int @id @default(autoincrement())
+  client_id    Int
+  day          DayOfWeek
+  booking_type BookingType
+  time_11_12   Int @default(2)
+  time_12_13   Int @default(2)
+  time_13_14   Int @default(2)
+  time_14_15   Int @default(2)
+  time_15_16   Int @default(0)
+  time_16_17   Int @default(0)
+  time_17_18   Int @default(2)
+  time_18_19   Int @default(2)
+  time_19_20   Int @default(2)
+  time_20_21   Int @default(2)
+  time_21_22   Int @default(0)
+  time_22_23   Int @default(0)
+  updated_at   DateTime @updatedAt
+  created_at   DateTime @default(now())
+
+  @@unique(fields: [client_id, day, booking_type])
+  @@map("booking_capacity")
+}
+
+model TemporaryUser {
+  id         Int @id @default(autoincrement())
+  name       String @db.VarChar(255)
+  email      String @unique @db.VarChar(255)
+  updated_at DateTime @updatedAt
+  created_at DateTime @default(now())
+
+  @@map("temporary_user")
+}
+
+model MailQue {
+  id    Int @id @default(autoincrement())
+  to    String @db.VarChar(255)
+  from  String @db.VarChar(255)
+  title String @db.VarChar(255)
+  body  String @db.Text
+  updated_at DateTime @updatedAt
+  created_at DateTime @default(now())
+
+  @@map("mail_que")
+}
+
+model MailLog {
+  id    Int @id @default(autoincrement())
+  to    String @db.VarChar(255)
+  from  String @db.VarChar(255)
+  title String @db.VarChar(255)
+  body  String @db.Text
+  updated_at DateTime @updatedAt
+  created_at DateTime @default(now())
+
+  @@map("mail_log")
+}
