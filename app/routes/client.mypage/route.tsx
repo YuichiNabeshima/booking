@@ -36,7 +36,7 @@ export default function ClientMypage() {
       <section className="pa-client-info">
         <h1 className="pa-client-info__heading">{client.name}</h1>
         <dl className="pa-info-unit">
-          <dt className="pa-info-unit__heading">メールアドレス</dt>
+          <dt className="pa-info-unit__heading">Email</dt>
           <dd className="pa-info-unit__body">{client.email}</dd>
         </dl>
       </section>

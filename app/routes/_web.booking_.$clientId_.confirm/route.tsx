@@ -53,40 +53,40 @@ export default function Index() {
 
   return (
     <main className="main">
-      <h2 className={`pa-heading ${errorMsg ? 'has-error' : ''}`}>{!errorMsg ? '予約を確定しますか？' : errorMsg}</h2>
+      <h2 className={`pa-heading ${errorMsg ? 'has-error' : ''}`}>{!errorMsg ? 'Would you like to confirm your booking?' : errorMsg}</h2>
       {actionErrorMsg?.actionErrorMsg && (
         <div className="pa-error">{actionErrorMsg.actionErrorMsg}</div>
       )}
       {!errorMsg && (
         <div className="pa-detail">
-          <h3 className="pa-detail-heading">予約内容</h3>
+          <h3 className="pa-detail-heading">Booking details</h3>
           <div className="pa-detail-content">
             <dl className="pa-detail-unit">
-              <dt className="pa-detail-unit__heading">お名前</dt>
+              <dt className="pa-detail-unit__heading">Name</dt>
               <dd className="pa-detail-unit__body">{result.name}</dd>
             </dl>
             <dl className="pa-detail-unit">
-              <dt className="pa-detail-unit__heading">メールアドレス</dt>
+              <dt className="pa-detail-unit__heading">Email</dt>
               <dd className="pa-detail-unit__body">{result.email}</dd>
             </dl>
             <dl className="pa-detail-unit">
-              <dt className="pa-detail-unit__heading">予約店舗</dt>
+              <dt className="pa-detail-unit__heading">Store</dt>
               <dd className="pa-detail-unit__body">{result.clientName}</dd>
             </dl>
             <dl className="pa-detail-unit">
-              <dt className="pa-detail-unit__heading">日時</dt>
+              <dt className="pa-detail-unit__heading">Date</dt>
               <dd className="pa-detail-unit__body">{result.date}/{result.start}</dd>
             </dl>
             <dl className="pa-detail-unit">
-              <dt className="pa-detail-unit__heading">コース</dt>
+              <dt className="pa-detail-unit__heading">Course</dt>
               <dd className="pa-detail-unit__body">{result.course}</dd>
             </dl>
             <dl className="pa-detail-unit">
-              <dt className="pa-detail-unit__heading">席</dt>
+              <dt className="pa-detail-unit__heading">Type of seat</dt>
               <dd className="pa-detail-unit__body">{result.type}</dd>
             </dl>
             <dl className="pa-detail-unit">
-              <dt className="pa-detail-unit__heading">人数</dt>
+              <dt className="pa-detail-unit__heading">Number of people</dt>
               <dd className="pa-detail-unit__body">{result.nop}</dd>
             </dl>
           </div>
@@ -100,13 +100,13 @@ export default function Index() {
               name="submit"
               value="1"
               className="pa-submit pa-btn"
-            >予約を確定する</button>
+            >Submit</button>
             <button
               type="submit"
               name="cancel"
               value="1"
               className="pa-cancel pa-btn"
-            >キャンセル</button>
+            >Cancel</button>
           </div>
         </Form>
       )}

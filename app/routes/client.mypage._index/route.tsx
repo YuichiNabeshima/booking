@@ -81,19 +81,19 @@ export default function ClientMypageIndex() {
       <div className="pa-info">
         <Form className="pa-form">
           <dl className="pa-form-unit">
-            <dt className="pa-form-unit__heading">日付選択</dt>
+            <dt className="pa-form-unit__heading">Date</dt>
             <dd className="pa-form-unit__body">
               <input type="date" name="date" />
             </dd>
           </dl>
-          <button type="submit" className="pa-form-submit">選択</button>
+          <button type="submit" className="pa-form-submit">Submit</button>
         </Form>
       </div>
       <div className="pa-wrapper">
         <table className="pa-table">
           <tbody>
             <tr>
-              <th className="pa-table-heading">{isPC && '予約者氏名'}</th>
+              <th className="pa-table-heading">{isPC && 'Name'}</th>
               {timePointArray.map((time, index) => (
                 <th key={index}>
                   {index % 4 === 0 && (
@@ -132,27 +132,27 @@ export default function ClientMypageIndex() {
         <BaseModal>
           <div className="pa-modal">
             <dl className="pa-modal-unit">
-              <dt className="pa-modal-unit__heading">氏名</dt>
+              <dt className="pa-modal-unit__heading">Name</dt>
               <dd className="pa-modal-unit__body">{modalInfo.name}</dd>
             </dl>
             <dl className="pa-modal-unit">
-              <dt className="pa-modal-unit__heading">メールアドレス</dt>
+              <dt className="pa-modal-unit__heading">Email</dt>
               <dd className="pa-modal-unit__body">{modalInfo.email}</dd>
             </dl>
             <dl className="pa-modal-unit">
-              <dt className="pa-modal-unit__heading">開始</dt>
+              <dt className="pa-modal-unit__heading">Start</dt>
               <dd className="pa-modal-unit__body">{modalInfo.start}</dd>
             </dl>
             <dl className="pa-modal-unit">
-              <dt className="pa-modal-unit__heading">コース</dt>
+              <dt className="pa-modal-unit__heading">Course</dt>
               <dd className="pa-modal-unit__body">{modalInfo.courseName}({modalInfo.courseTime}min)</dd>
             </dl>
             <dl className="pa-modal-unit">
-              <dt className="pa-modal-unit__heading">席</dt>
-              <dd className="pa-modal-unit__body">{BOOKING_TYPE.GROUP === modalInfo.type ? 'テーブル' : 'カウンター'}</dd>
+              <dt className="pa-modal-unit__heading">Type of seat</dt>
+              <dd className="pa-modal-unit__body">{BOOKING_TYPE.GROUP === modalInfo.type ? 'Seat at the bar' : 'Table seat'}</dd>
             </dl>
             <dl className="pa-modal-unit">
-              <dt className="pa-modal-unit__heading">人数</dt>
+              <dt className="pa-modal-unit__heading">Number of people</dt>
               <dd className="pa-modal-unit__body">{modalInfo.nop}</dd>
             </dl>
           </div>

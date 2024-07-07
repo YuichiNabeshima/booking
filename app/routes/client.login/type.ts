@@ -3,11 +3,11 @@ import { z } from 'zod';
 
 export const schema = z.object({
   email: z
-    .string({ required_error: 'メールアドレスは入力必須です' })
-    .email({ message: 'メールアドレスの形式で入力してください' })
+    .string({ required_error: 'This field is required.' })
+    .email({ message: 'Please enter email format.' })
     ,
   password: z
-    .string({ required_error: 'パスワードは入力必須です' })
+    .string({ required_error: 'This field is required.' })
     ,
 })
 ;

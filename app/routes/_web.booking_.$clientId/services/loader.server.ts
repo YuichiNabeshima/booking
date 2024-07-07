@@ -1,7 +1,7 @@
 import * as modelFnClient from '~/models/fn/client';
 import * as modelFnCourse from '~/models/fn/course';
 
-export async function getClientData({ clientId }: { clientId: string }) {
+export async function getLoaderData({ clientId }: { clientId: string }) {
   const cid =Number(clientId);
   const client = await modelFnClient.fetch({
     id: cid,

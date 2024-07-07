@@ -11,7 +11,7 @@ export async function clientLogin(formData: FormData, request: Request) {
   if (submission.status !== 'success') {
     return json({
       success: false,
-      message: 'エラーがあります',
+      message: 'Something went wrong.',
       submission: submission.reply(),
     });
   }
@@ -21,7 +21,7 @@ export async function clientLogin(formData: FormData, request: Request) {
   if (!user) {
     return json({
       success: false,
-      message: 'メールアドレスとパスワードが一致しません',
+      message: 'The email and the password is not match.',
       submission: submission.reply(),
     });
   }
@@ -36,7 +36,7 @@ export async function clientLogin(formData: FormData, request: Request) {
 
   return json({
     success: false,
-    message: 'メールアドレスとパスワードが一致しません',
+    message: 'The email and the password is not match.',
     submission: submission.reply(),
   });
 }

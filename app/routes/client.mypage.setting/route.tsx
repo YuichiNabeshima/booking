@@ -23,13 +23,22 @@ export const action: ActionFunction = async ({ request }: ActionFunctionArgs) =>
   if (submission.status !== 'success') {
     return json({
       success: false,
-      message: 'エラーがありました',
+      message: 'Something went wrong.',
       submission: submission.reply(),
     });
   }
 
   const client = await authenticator.isAuthenticated(request, {
     failureRedirect: '/client/login/',
+  });
+
+  const existCourses = await modelFnCourse.fetchAll({ client_id: client.id });
+
+  existCourses.forEach(course => {
+    const isExist = submission.value.courses.some(newCourse => course.id === Number(newCourse.id));
+    if (!isExist) {
+      modelFnCourse.remove({ id: course.id });
+    }
   });
 
   await Promise.all(submission.value.courses.map(async submitCourse => {
@@ -197,12 +206,12 @@ export default function ClientMypageSetting() {
               <div className="pa-form-item-unit">
 
                 <div className="pa-form-item">
-                  <label htmlFor='name' className="pa-form-item__label">店舗名</label>
+                  <label htmlFor='name' className="pa-form-item__label">Store Name</label>
                   <input className="pa-form-item__input" {...getInputProps(name, { type: 'text' })} />
                 </div>
 
                 <div className="pa-form-item">
-                  <label htmlFor='course' className="pa-form-item__label">コース</label>
+                  <label htmlFor='course' className="pa-form-item__label">Course Name and time(min)</label>
                   {courseList.map((item, index) => {
                     const fieldItem = item.getFieldset();
                     return (
@@ -226,7 +235,7 @@ export default function ClientMypageSetting() {
                             name: courses.name,
                             index,
                           })}
-                        >削除</button>
+                        >Delete</button>
                       </fieldset>
                     );
                   })}
@@ -235,14 +244,14 @@ export default function ClientMypageSetting() {
                     {...form.insert.getButtonProps({
                       name: courses.name,
                     })}
-                  >追加</button>
+                  >Add</button>
 
                 </div>
               </div>
 
               <div className="pa-form-item-unit">
                 <div className="pa-form-item">
-                  <h2 className="pa-form-item__heading">カウンター</h2>
+                  <h2 className="pa-form-item__heading">Seat at the bar</h2>
                   <div className="pa-form-item__table-inner">
                     <table className="pa-form-table">
                       <thead>
@@ -296,7 +305,7 @@ export default function ClientMypageSetting() {
                 </div>
 
                 <div className="pa-form-item">
-                  <h2 className="pa-form-item__heading">テーブル</h2>
+                  <h2 className="pa-form-item__heading">Table seat</h2>
                   <div className="pa-form-item__table-inner">
                     <table className="pa-form-table">
                       <thead>
@@ -349,7 +358,7 @@ export default function ClientMypageSetting() {
               </div>
 
             </div>
-            <button className="pa-form-btn">保存</button>
+            <button className="pa-form-btn">Save</button>
 
           </Form>
         </div>

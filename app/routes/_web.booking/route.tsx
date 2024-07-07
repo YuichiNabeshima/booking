@@ -8,7 +8,7 @@ export const loader: LoaderFunction = ({ params }: LoaderFunctionArgs) => {
 export default function Index() {
   return (
     <>
-      <h1>booking11</h1>
+      <h1>booking</h1>
       <Outlet />
     </>
   );

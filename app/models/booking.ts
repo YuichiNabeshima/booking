@@ -5,4 +5,6 @@ export const BOOKING_TYPE = {
   GROUP: 'GROUP',
 } as const;
 
+export type BookingType = keyof typeof BOOKING_TYPE;
+
 export { Booking };

@@ -8,10 +8,10 @@ import type { ActionReturnValue } from '~/common/type';
 import style from './style.css?url';
 
 export const meta: MetaFunction = () => [
-  { title: '店舗のユーザー登録', },
+  { title: 'Registration client store', },
   {
     name: 'description',
-    content: '店舗のユーザー登録のページです',
+    content: 'This page is a registration page.',
   },
 ];
 
@@ -37,14 +37,14 @@ export default function ClientSignup() {
     <>
       <div className="pa-wrapper">
         <div className="pa-inner">
-          <h1 className="pa-heading">店舗を登録する</h1>
+          <h1 className="pa-heading">Register client</h1>
           <Form method='post' className="pa-form" {...getFormProps(form)}>
             {data && data.message && (
               <p className="pa-global-msg">{data.message}</p>
             )}
             <div className="pa-form-items">
               <div className="pa-form-item">
-                <label className="pa-form-item__label" htmlFor="client-name">店名</label>
+                <label className="pa-form-item__label" htmlFor="client-name">Name of restaurant</label>
                 <input className="pa-form-item__input" {...getInputProps(name, { type: 'text' })} required />
                 {name.errors && (
                   <div className="pa-errors">
@@ -56,7 +56,7 @@ export default function ClientSignup() {
               </div>
 
               <div className="pa-form-item">
-                <label className="pa-form-item__label" htmlFor="email">メールアドレス</label>
+                <label className="pa-form-item__label" htmlFor="email">Email</label>
                 <input className="pa-form-item__input" {...getInputProps(email, { type: 'email' })} />
                 {email.errors && (
                   <div className="pa-errors">
@@ -68,7 +68,7 @@ export default function ClientSignup() {
               </div>
 
               <div className="pa-form-item">
-                <label className="pa-form-item__label" htmlFor="password">パスワード</label>
+                <label className="pa-form-item__label" htmlFor="password">Password</label>
                 <input className="pa-form-item__input" {...getInputProps(password, { type: 'password' })} />
                 {password.errors && (
                   <div className="pa-errors">
@@ -80,7 +80,7 @@ export default function ClientSignup() {
               </div>
 
               <div className="pa-form-item">
-                <label className="pa-form-item__label" htmlFor="password-confirm">確認用パスワード</label>
+                <label className="pa-form-item__label" htmlFor="password-confirm">Password confirmation</label>
                 <input className="pa-form-item__input" {...getInputProps(passwordConfirm, { type: 'password' })} />
                 {passwordConfirm.errors && (
                   <div className="pa-errors">
@@ -91,7 +91,7 @@ export default function ClientSignup() {
                 )}
               </div>
             </div>
-            <button className="pa-form-btn">登録する</button>
+            <button className="pa-form-btn">Registration</button>
             <div className="pa-form-link-wrapper">
               <Link to={`/client/login/`} className="pa-form-link">Log in</Link>
             </div>

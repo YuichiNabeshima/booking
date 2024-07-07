@@ -11,7 +11,7 @@ export async function clientSignup(formData: FormData, request: Request) {
   if (submission.status !== 'success') {
     return json({
       success: false,
-      message: 'エラーがあります',
+      message: 'Something went wrong.',
       submission: submission.reply(),
     });
   }
@@ -19,10 +19,10 @@ export async function clientSignup(formData: FormData, request: Request) {
   if (await modelFnClient.fetch({email: submission.value.email})) {
     return json({
       success: false,
-      message: 'エラーがあります',
+      message: 'Something went wrong.',
       submission: submission.reply({
         fieldErrors: {
-          email: ['メールアドレスは既に存在しています'],
+          email: ['Email already exists.'],
         }
       }),
     });
@@ -39,7 +39,7 @@ export async function clientSignup(formData: FormData, request: Request) {
   if (!newClient) {
     return json({
       success: false,
-      message: '登録が正常に終了しませんでした',
+      message: 'Something went wrong.',
     });
   }
 
@@ -50,7 +50,7 @@ export async function clientSignup(formData: FormData, request: Request) {
   if (!result) {
     return json({
       success: false,
-      message: 'ログインが正常にできませんでした',
+      message: 'Something went wrong.',
     });
   }
 }

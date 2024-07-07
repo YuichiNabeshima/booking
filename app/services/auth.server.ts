@@ -12,7 +12,7 @@ authenticator.use(
     const client = await modelFnClient.fetch({email: String(email)});
 
     if (!client) {
-      throw new Error('ログインに失敗しました');
+      throw new Error('Failed login');
     }
 
     return client;

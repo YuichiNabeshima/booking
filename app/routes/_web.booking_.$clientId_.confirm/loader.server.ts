@@ -31,9 +31,9 @@ export async function loaderServer({ requestUrl, clientId }: Args) {
     decoded = jwt.verify(token, process.env.TOKEN_KEY as string) as DecodedReturns;
   } catch(e) {
     if (e instanceof jwt.TokenExpiredError) {
-      errorMsg = '有効期限が切れています';
+      errorMsg = 'Token has expired';
     } else if (e instanceof jwt.JsonWebTokenError) {
-      errorMsg = '不正なトークンです';
+      errorMsg = 'Invalid token';
     }
   }
 
@@ -56,7 +56,7 @@ export async function loaderServer({ requestUrl, clientId }: Args) {
     result: {
       clientName: client?.name,
       nop: decoded.nop,
-      type: decoded.type === BOOKING_TYPE.GROUP ? 'テーブル' : 'カウンター',
+      type: decoded.type === BOOKING_TYPE.GROUP ? 'Table seat' : 'Seat at the bar',
       course: `${course?.name}(${course?.time_range}min)`,
       date: decoded.schedule?.substring(0, decoded.schedule.indexOf('-')),
       start: decoded.schedule?.substring(decoded.schedule.indexOf('-') + 1),

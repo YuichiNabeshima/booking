@@ -37,7 +37,7 @@ export default function ClientLogin() {
     <>
       <div className="pa-wrapper">
         <div className="pa-inner">
-          <h1 className="pa-heading">クライアントログインする</h1>
+          <h1 className="pa-heading">Login as client.</h1>
           <Form method='post' className={`pa-form ${data && !data.success ? 'has-error' : ''}`} {...getFormProps(form)}>
             {data && data.message && (
               <p className="pa-global-msg">{data.message}</p>
@@ -45,7 +45,7 @@ export default function ClientLogin() {
             <div className="pa-form-items">
 
               <div className={`pa-form-item ${email.errors ? 'is-error' : ''}`}>
-                <label className="pa-form-item__label" htmlFor="email">メールアドレス</label>
+                <label className="pa-form-item__label" htmlFor="email">Email</label>
                 <input className="pa-form-item__input" {...getInputProps(email, { type: 'email' })} />
                 {email.errors && (
                   <div className="pa-errors">
@@ -57,7 +57,7 @@ export default function ClientLogin() {
               </div>
 
               <div className={`pa-form-item ${password.errors ? 'is-error' : ''}`}>
-                <label className="pa-form-item__label" htmlFor="password">パスワード</label>
+                <label className="pa-form-item__label" htmlFor="password">Password</label>
                 <input className="pa-form-item__input" {...getInputProps(password, { type: 'password' })} />
                 {password.errors && (
                   <div className="pa-errors">
@@ -68,9 +68,9 @@ export default function ClientLogin() {
                 )}
               </div>
             </div>
-            <button className="pa-form-btn">ログイン</button>
+            <button className="pa-form-btn">Login</button>
             <div className="pa-form-link-wrapper">
-              <Link to={`/client/signup/`} className="pa-form-link">sign up</Link>
+              <Link to={`/client/signup/`} className="pa-form-link">Sign up</Link>
             </div>
           </Form>
         </div>

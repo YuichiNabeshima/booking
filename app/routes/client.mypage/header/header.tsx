@@ -31,8 +31,8 @@ export default function Header() {
               }}></div>
             <nav className="header-nav">
               <Link to={`/client/logout/`} className="header-nav-item header-logout">Logout</Link>
-              <Link to={`/client/mypage/`} className="header-nav-item">マイページ</Link>
-              <Link to={`/client/mypage/setting/`} className="header-nav-item">設定</Link>
+              <Link to={`/client/mypage/`} className="header-nav-item">My page</Link>
+              <Link to={`/client/mypage/setting/`} className="header-nav-item">Setting</Link>
             </nav>
           </>
         )}

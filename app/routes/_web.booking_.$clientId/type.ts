@@ -1,7 +1,7 @@
 import { Client } from '~/models/client';
 import { Course } from '~/models/course';
 import { TimePointValue } from '~/utilis/classes/overlap/overlap';
-import { StateOfDay } from '../_web.booking_.$clientId.scheduleApi/service.server';
+import { StateOfDay } from '../_web.booking_.$clientId.scheduleApi/services/get_booking_state_of_week';
 
 export type LoaderReturnValue = {
   client: Client;

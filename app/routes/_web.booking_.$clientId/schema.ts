@@ -4,8 +4,8 @@ import { BOOKING_TYPE } from '~/models/booking';
 export const schema = z
   .object({
     'number-of-people': z
-      .number({ required_error: '人数は入力必須です', message: '人数の値が不正です' })
-      .max(6, { message: '人数は6人以下で入力してください' })
+      .number({ required_error: 'It is required field.', message: 'It is invalid value.' })
+      .max(4, { message: 'Please choose less than 5 people.' })
       ,
     'type': z
       .union([
@@ -14,17 +14,17 @@ export const schema = z
       ])
       ,
     course: z
-      .number({ required_error: 'コースは入力必須です', message: 'コースの値が不正です' }),
-    'schedule': z
-      .string({ required_error: '予約時間は必須入力です' })
+      .number({ required_error: 'It is required field.', message: 'It is invalid value.' }),
+    schedule: z
+      .string({ required_error: 'It is required field.' })
       ,
     'full-name': z
-      .string({ message: '氏名が不正です' })
+      .string({ message: 'It is invalid value.' })
       .optional()
       ,
     email: z
       .string()
-      .email({ message: 'メールアドレスの形式で入力してください' })
+      .email({ message: 'It is invalid email.' })
       .optional()
       ,
     intent: z
@@ -40,7 +40,8 @@ export const schema = z
     }
     return false;
   }, {
-    message: '氏名は入力必須です',
+    path: ['full-name'],
+    message: 'It is required.',
   })
   .refine(val => {
     if (val.intent === 'confirm') {
@@ -51,6 +52,7 @@ export const schema = z
     }
     return false;
   }, {
-    message: 'メールアドレスは入力必須です',
+    path: ['email'],
+    message: 'It is required.',
   })
   ;

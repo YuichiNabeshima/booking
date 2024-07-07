@@ -1,5 +1,5 @@
-import { BOOKING_TYPE } from '~/models/booking';
-import type { BookingCapacity, BookingType } from '~/models/booking_capacity';
+import { BOOKING_TYPE, BookingType } from '~/models/booking';
+import type { BookingCapacity } from '~/models/booking_capacity';
 import { KEY_OF_CAPACITY } from '~/routes/_web.booking_.$clientId.scheduleApi/const';
 import { timePointArray } from './const';
 
@@ -20,7 +20,7 @@ export type BookingInfo = {
 export type TimePoint = { [key in TimePointValue]: BookingInfo };
 
 export class Overlap {
-  protected bookingType: keyof typeof BookingType = BOOKING_TYPE.SINGLE;
+  protected bookingType: BookingType = BOOKING_TYPE.SINGLE;
   protected timePoint: TimePoint = {
     '11:00': {
       capacity: 0,
@@ -312,9 +312,11 @@ export class Overlap {
     },
   };
 
-  add(range: {start: TimePointValue, end: TimePointValue, numberOfPeople: number}[], bookingType: keyof typeof BOOKING_TYPE = BOOKING_TYPE.SINGLE) {
+  constructor({ bookingType }: { bookingType: BookingType } = { bookingType: BOOKING_TYPE.SINGLE }) {
     this.bookingType = bookingType;
+  }
 
+  add(range: {start: TimePointValue, end: TimePointValue, numberOfPeople: number}[]) {
     range.forEach(async time => {
 
       Object.keys(this.timePoint).forEach(key => {
@@ -366,21 +368,16 @@ export class Overlap {
     return this.timePoint[time].numberOfPeople;
   }
 
-  getRemain(time: TimePointValue, currentPeople: number = 0) {
-    return this.getCapacity(time) - (this.getNumberOfPeople(time) + currentPeople);
+  getRemain(time: TimePointValue) {
+    if (this.bookingType === BOOKING_TYPE.GROUP) {
+      return this.getCapacity(time);
+    }
+
+    return this.getCapacity(time) - (this.getNumberOfPeople(time));
   }
 
-  isAvailable(time: TimePointValue, currentPeople: number = 0) {
-    return this.getRemain(time, currentPeople) >= 1;
-  }
-
-  isAvailableUntilTime(time: TimePointValue, untilTime: TimePointValue, currentPeople: number = 0) {
-    const start = timePointArray.indexOf(time);
-    const end = timePointArray.indexOf(untilTime) !== -1 ? timePointArray.indexOf(untilTime) : timePointArray.length;
-
-    return timePointArray.slice(start, end + 1).every(time => {
-      return this.isAvailable(time, currentPeople);
-    });
+  isAvailable(time: TimePointValue) {
+    return this.getRemain(time) >= 1;
   }
 }
 
