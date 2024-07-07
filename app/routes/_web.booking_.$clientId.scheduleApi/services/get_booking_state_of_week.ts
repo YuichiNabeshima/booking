@@ -4,8 +4,8 @@ import * as modelFnBookingCapacity from '~/models/fn/booking_capacity';
 import * as modelFnCourse from '~/models/fn/course';
 import { getThisWeek } from '~/utilis/schedule';
 import { TimePointValue } from '~/utilis/classes/overlap/overlap';
-import { DAY_OF_VALUE, WEEK } from './const';
-import { getAvailableScheduleOfDay } from './services/get_available_schedule_of_day';
+import { DAY_OF_VALUE, WEEK } from '../const';
+import { getAvailableScheduleOfDay } from '../services/get_available_schedule_of_day';
 
 export type StateOfDay = {
   isAvailable: boolean;
@@ -67,7 +67,7 @@ export async function getBookingStateOfWeek({
     const capacityOfDay = capacity_list.filter(capacity => {
       return capacity.day === DAY_OF_VALUE[new Date(dayTimeStamp).getDay() as keyof typeof DAY_OF_VALUE];
     });
-    const scheduleOfDay = getAvailableScheduleOfDay({ bookings: bookingOfDay, capacityList: capacityOfDay, courses });
+    const scheduleOfDay = getAvailableScheduleOfDay({ bookings: bookingOfDay, capacityList: capacityOfDay, courses, bookingType: type });
 
     return {
       'day': WEEK[index as keyof typeof WEEK],

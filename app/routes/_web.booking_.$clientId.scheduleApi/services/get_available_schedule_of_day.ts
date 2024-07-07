@@ -1,4 +1,4 @@
-import type { Booking } from '~/models/booking';
+import type { Booking, BookingType } from '~/models/booking';
 import type { BookingCapacity } from '~/models/booking_capacity';
 import type { Course } from '~/models/course';
 import { Overlap, TimePointValue } from '~/utilis/classes/overlap/overlap';
@@ -11,15 +11,16 @@ type Args = {
   bookings: Booking[];
   capacityList: BookingCapacity[];
   courses: Course[];
+  bookingType: BookingType;
 };
 
-export function getAvailableScheduleOfDay({ bookings, capacityList, courses }: Args) {
+export function getAvailableScheduleOfDay({ bookings, capacityList, courses, bookingType }: Args) {
   const courseObj: { [courseId: number]: Course } = {};
   courses.forEach(course => {
     courseObj[course.id] = course;
   });
 
-  const overlap = new Overlap();
+  const overlap = new Overlap({ bookingType });
   overlap.add(bookings.map(
     booking => {
       const endTime = new Time(booking.start);

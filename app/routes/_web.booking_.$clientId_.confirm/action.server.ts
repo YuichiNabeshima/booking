@@ -30,14 +30,14 @@ export async function actionServer({ request, clientId }: {
     decoded = jwt.verify(token, process.env.TOKEN_KEY as string) as {nop: string, type: string, course: string, schedule: string, name: string, email: string};
   } catch(e) {
     if (e instanceof jwt.TokenExpiredError) {
-      errorMsg = '有効期限が切れています';
+      errorMsg = 'Token has expired.';
     } else if (e instanceof jwt.JsonWebTokenError) {
-      errorMsg = '不正なトークンです';
+      errorMsg = 'Invalid token.';
     }
   }
 
   if (!decoded) {
-    errorMsg = 'デコードが空です';
+    errorMsg = 'Decode is empty.';
   }
 
   if (errorMsg || !decoded) {
@@ -46,11 +46,14 @@ export async function actionServer({ request, clientId }: {
     });
   }
 
+  // When cancel.
   if (request.formData.get('cancel')) {
     const url = new URL(`/booking/${clientId}/`, request.origin ?? '');
+    const date = decoded.schedule.slice(0, decoded.schedule.indexOf('-'));
     url.searchParams.set('number-of-people', decoded.nop);
     url.searchParams.set('type', decoded.type);
     url.searchParams.set('course', decoded.course);
+    url.searchParams.set('date', date);
     url.searchParams.set('schedule', decoded.schedule);
 
     return redirect(`/booking/${clientId}/?${url.searchParams.toString()}`);
@@ -79,7 +82,7 @@ export async function actionServer({ request, clientId }: {
 
   if (!newUser && !user) {
     return json({
-      errorMsg: '予約に失敗しました',
+      errorMsg: 'Something went wrong',
     });
   }
 
@@ -106,13 +109,13 @@ export async function actionServer({ request, clientId }: {
   modelFnMailQue.create({
     to: decoded.email,
     from: 'from@gmail.com',
-    title: `予約しました`,
-    body: `予約内容
-    店舗: ${client?.name}
-    日時: ${decoded.schedule}
-    コース: ${course?.name}
-    氏名: ${user?.name ?? newUser.name}
-    メールアドレス: ${user?.email ?? newUser.email}
+    title: `Booking Details`,
+    body: `Your booking is below.
+    Store: ${client?.name}
+    Date: ${decoded.schedule}
+    Course: ${course?.name}
+    Name: ${user?.name ?? newUser.name}
+    Email: ${user?.email ?? newUser.email}
     `,
   });
 

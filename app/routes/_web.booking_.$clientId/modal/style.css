@@ -1,0 +1,124 @@
+.pa-modal-intro {
+  @mixin pc {
+    font-size: 2rem;
+    text-align: center;
+  }
+  @mixin sp {
+    font-size: 1.8rem;
+  }
+}
+
+.pa-modal-items {
+  @mixin pc {
+    margin-top: 20px;
+  }
+  @mixin sp {
+    margin-top: 16px;
+  }
+}
+
+.pa-modal-item {
+  @mixin pc {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0 40px 0 0;
+  }
+
+  label {
+    @mixin pc {
+      width: 120px;
+    }
+    @mixin sp {
+      width: 100%;
+    }
+  }
+
+  input {
+    border: 1px solid var(--colorBorder);
+
+    @mixin pc {
+      flex: 1 0 0;
+      margin-left: 16px;
+      padding: 4px 8px;
+    }
+    @mixin sp {
+      width: 100%;
+      padding: 4px 8px;
+    }
+  }
+
+  &.is-error {
+    input {
+      border-color: var(--colorError);
+    }
+  }
+
+  & + & {
+    @mixin pc {
+      margin-top: 26px;
+    }
+    @mixin sp {
+      margin-top: 20px;
+    }
+  }
+}
+
+.pa-modal-item__error {
+  display: block;
+  color: var(--colorError);
+
+  @mixin pc {
+    width: 100%;
+    margin-left: 136px;
+    font-size: 1.8rem;
+  }
+}
+
+input[type="date"] {
+  @mixin sp {
+    width: 100%;
+  }
+}
+
+.pa-modal-submit {
+  display: block;
+  border-radius: 8px;
+  background-color: var(--colorSkyBlue);
+  color: #fff;
+  text-align: center;
+
+  @mixin pc {
+    width: 200px;
+    margin: 28px auto 0;
+    padding: 10px 0;
+    font-size: 1.8rem;
+  }
+  @mixin sp {
+    width: 100%;
+    margin-top: 20px;
+    padding: 8px 0;
+  }
+}
+
+.pa-modal-note {
+  margin-top: 16px;
+}
+
+.pa-modal-note__text {
+  @mixin sp {
+    font-size: 1.8rem;
+  }
+}
+
+.pa-modal-note__email {
+  word-wrap: break-word;
+
+  @mixin pc {
+    margin-top: 30px;
+  }
+  @mixin sp {
+    margin-top: 20px;
+    font-size: 1.4rem;
+  }
+}

@@ -2,20 +2,20 @@ import { z } from 'zod';
 
 export const schema = z.object({
   name: z
-    .string({ required_error: '店名は入力必須です' })
+    .string({ required_error: 'This field is required.' })
     ,
   email: z
-    .string({ required_error: 'メールアドレスは入力必須です' })
+    .string({ required_error: 'This field is required.' })
     .email()
     ,
   password: z
-    .string({ required_error: 'パスワードは入力必須です' })
-    .regex(/^(?=.*?[a-zA-Z])(?=.*?\d)[a-zA-Z\d]{8,}$/, { message: 'パスワードは半角英数字混合で入力してください' })
-    .min(8, { message: 'パスワードは8文字以上入力してください' })
+    .string({ required_error: 'This field is required.' })
+    .regex(/^(?=.*?[a-zA-Z])(?=.*?\d)[a-zA-Z\d]{8,}$/, { message: 'Please enter in half-width alphanumeric characters.' })
+    .min(8, { message: 'Please enter password more than 8 characters.' })
     ,
   passwordConfirm: z
-    .string({ required_error: '確認用パスワードは入力必須です' })
-    .min(8, { message: '確認用パスワードは8文字以上入力してください' })
+    .string({ required_error: 'This field is required.' })
+    .min(8, { message: 'Please enter in more than 8 characters.' })
     ,
 })
 .superRefine(({ password, passwordConfirm }, ctx) => {
@@ -23,7 +23,7 @@ export const schema = z.object({
     ctx.addIssue({
       path: ['passwordConfirm'],
       code: 'custom',
-      message: '確認用パスワードが一致していません',
+      message: 'Confirmation password id not match.',
     });
   }
 })

@@ -1,6 +1,6 @@
 import { LoaderFunction, LoaderFunctionArgs, json } from '@remix-run/node';
 import invariant from 'tiny-invariant';
-import { getBookingStateOfWeek } from './service.server';
+import { getBookingStateOfWeek } from './services/get_booking_state_of_week';
 import { BOOKING_TYPE } from '~/models/booking';
 
 export const WEEK = {

@@ -5,14 +5,14 @@ import { schema } from '../schema';
 import * as modelFnMailQue from '~/models/fn/mail_que';
 import { MODAL_KIND } from '../const';
 
-export async function actionServer({ formData, clientId, url }: { formData: FormData, clientId: string, url: string }) {
+export async function getActionData({ formData, clientId, url }: { formData: FormData, clientId: string, url: string }) {
 
   const submission = parseWithZod(formData, { schema });
 
   if (submission.status !== 'success') {
     return json({
       success: false,
-      message: 'エラーがあります',
+      message: 'Something went wrong',
       submission: submission.reply(),
     });
   }
@@ -30,7 +30,7 @@ export async function actionServer({ formData, clientId, url }: { formData: Form
   if (!(typeof updates['schedule'] === 'string')) {
     return json({
       success: false,
-      message: 'エラーがあります',
+      message: 'Something went wrong',
       submission: submission.reply(),
     });
   }
@@ -53,7 +53,10 @@ export async function actionServer({ formData, clientId, url }: { formData: Form
     to: updates.email as string,
     from: 'booking@gmail.com',
     title: 'test',
-    body: `${url}/booking/${clientId}/confirm?token=${token}`,
+    body: `Please confirm your booking from a link below.
+    URL:
+    ${url}/booking/${clientId}/confirm?token=${token}
+    `,
   });
 
   return json({

@@ -1,7 +1,6 @@
 @import '/app/styles/style.css';
 
 .pa-bg {
-  /* background-image: radial-gradient(rgba(168, 202, 240, 1), rgba(233, 240, 250, 1)); */
   min-height: 100vh;
 }
 

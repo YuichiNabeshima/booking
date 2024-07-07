@@ -1,5 +1,5 @@
 /**
- * 文字列の先頭のみ大文字に変換
+ * Converts a string to uppercase
  */
 export function capitalize( str: string, isFirstCharLower?: boolean ) {
   if (typeof str !== 'string' || !str) return str;
