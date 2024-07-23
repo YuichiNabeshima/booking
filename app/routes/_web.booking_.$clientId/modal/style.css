@@ -121,4 +121,8 @@ input[type="date"] {
     margin-top: 20px;
     font-size: 1.4rem;
   }
+
+  a {
+    color: var(--colorBlue);
+  }
 }
