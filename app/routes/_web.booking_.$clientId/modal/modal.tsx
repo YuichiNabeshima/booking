@@ -16,6 +16,7 @@ export function Modal({ fullNameField, emailField }: Props) {
     isConfirm,
     isFinish,
     convertToBr,
+    convertToAnchor,
   } = useModal({ result });
 
   return (
@@ -55,7 +56,7 @@ export function Modal({ fullNameField, emailField }: Props) {
           <div className="pa-modal-note">
             <p className="pa-modal-note__text">※Mail contents is below.<br />As this is prototype, we show the content of email.</p>
             <p className="pa-modal-note__email">
-              <div dangerouslySetInnerHTML={convertToBr(emailContent.data ?? '')}></div>
+              <div dangerouslySetInnerHTML={convertToBr(convertToAnchor(emailContent.data ?? ''))}></div>
             </p>
           </div>
         </>
