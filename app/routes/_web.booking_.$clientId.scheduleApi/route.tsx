@@ -3,16 +3,6 @@ import invariant from 'tiny-invariant';
 import { getBookingStateOfWeek } from './services/get_booking_state_of_week';
 import { BOOKING_TYPE } from '~/models/booking';
 
-export const WEEK = {
-  0: 'mon',
-  1: 'tue',
-  2: 'wed',
-  3: 'thu',
-  4: 'fri',
-  5: 'sat',
-  6: 'sun',
-};
-
 export const loader: LoaderFunction = async ({
   request,
   params,
