@@ -8,15 +8,12 @@ import * as modelFnClient from '~/models/fn/client';
 import * as modelFnCourse from '~/models/fn/course';
 import { User } from '~/models/user';
 
-export async function actionServer({ request, clientId }: {
-  request: {
-    formData: FormData;
-    url: string;
-    origin: string;
-  },
+export async function getActionServer({ request, clientId }: {
+  request: Request;
   clientId: string;
 }) {
 
+  const formData = await request.clone().formData();
   const url = new URL(request.url);
   const token = url.searchParams.get('token');
 
@@ -47,8 +44,8 @@ export async function actionServer({ request, clientId }: {
   }
 
   // When cancel.
-  if (request.formData.get('cancel')) {
-    const url = new URL(`/booking/${clientId}/`, request.origin ?? '');
+  if (formData.get('cancel')) {
+    const url = new URL(`/booking/${clientId}/`, request.headers.get('origin') ?? '');
     const date = decoded.schedule.slice(0, decoded.schedule.indexOf('-'));
     url.searchParams.set('number-of-people', decoded.nop);
     url.searchParams.set('type', decoded.type);

@@ -1,13 +1,13 @@
 import { useLoaderData } from '@remix-run/react';
 import { getCollectionProps } from '@conform-to/react';
 import { timePointArray } from '~/utilis/classes/overlap/const';
-import type { LoaderReturnValue, Schedule } from '../../type';
+import type { LoaderReturn, Schedule } from '../../type';
 import type { FormProps } from '../type';
 import { useSchedule } from './hooks';
 import { loader } from '../../route';
 
 export function Schedule({ field }: FormProps) {
-  const { client } = useLoaderData<typeof loader>() as LoaderReturnValue;
+  const { client } = useLoaderData<typeof loader>() as LoaderReturn;
 
   const {
     onHandleSchedule,

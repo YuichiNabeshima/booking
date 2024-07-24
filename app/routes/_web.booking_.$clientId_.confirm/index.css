@@ -1,0 +1,7 @@
+/* Common */
+@import '/app/styles/style.css';
+
+/* _web/style.css */
+@import '/app/routes/_web/style.css';
+
+@import './style.css';

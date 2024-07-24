@@ -1,5 +1,3 @@
-@import '/app/styles/style.css';
-
 .main {
   @mixin pc {
     padding: 16px 24px;
@@ -95,18 +93,36 @@
 }
 
 .pa-submit {
+  border: 1px solid var(--colorSkyBlue);
   background-color: var(--colorSkyBlue);
   color: #fff;
   font-weight: 600;
+  transition-property: background-color, color;
+  transition-duration: .3s;
+
+  &:hover {
+    @mixin pc {
+      background-color: #fff;
+      color: var(--colorSkyBlue);
+    }
+  }
 }
 
 .pa-cancel {
   border: 1px solid #000;
+  transition-property: opacity;
+  transition-duration: .3s;
 
   @mixin pc {
     margin-left: 24px;
   }
   @mixin sp {
     margin-top: 16px;
+  }
+
+  &:hover {
+    @mixin pc {
+      opacity: .6;
+    }
   }
 }

@@ -1,9 +1,15 @@
 import { json } from '@remix-run/node';
 import jwt from 'jsonwebtoken';
 import { parseWithZod } from '@conform-to/zod';
-import { schema } from '../schema';
+import { ActionReturn as BaseActionReturn } from '~/common/type';
 import * as modelFnMailQue from '~/models/fn/mail_que';
+import { schema } from '../schema';
 import { MODAL_KIND } from '../const';
+
+export type ActionReturn = {
+  modalKind?: typeof MODAL_KIND[keyof typeof MODAL_KIND];
+  mailResult?: number;
+} & BaseActionReturn;
 
 export async function getActionData({ formData, clientId, url }: { formData: FormData, clientId: string, url: string }) {
 

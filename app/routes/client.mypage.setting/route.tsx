@@ -5,7 +5,7 @@ import style from './style.css?url';
 import { useForm, getFormProps, getInputProps, getFieldsetProps } from '@conform-to/react';
 import { LoaderReturnValue, schema } from './type';
 import { parseWithZod } from '@conform-to/zod';
-import { ActionReturnValue } from '~/common/type';
+import { ActionReturn } from '~/common/type';
 import * as modelFnCourse from '~/models/fn/course';
 import * as modelFnBookingCapacity from '~/models/fn/booking_capacity';
 import { capacityInitialValue, timeTable, week } from './const';
@@ -165,7 +165,7 @@ export const loader: LoaderFunction = async ({ request }: LoaderFunctionArgs) =>
 
 export default function ClientMypageSetting() {
   const data = useLoaderData<typeof loader>() as LoaderReturnValue;
-  const submission = useActionData<typeof action>() as ActionReturnValue;
+  const submission = useActionData<typeof action>() as ActionReturn;
   const { onChangeColNumber, onChangeRowNumber } = useFormTable();
 
   const [form,

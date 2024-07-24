@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import { useFetcher, useSearchParams } from '@remix-run/react';
 import { MAIL_ID, MODAL_KIND } from '../const';
 import { MODAL_KEY, MODAL_STATE } from '~/components/modal/base_modal/const';
-import { ActionReturnValue } from '~/common/type';
+import { ActionReturn } from '../services/action.server';
 
 type Args = {
-  result: ActionReturnValue;
+  result: ActionReturn;
 };
 
 export function useModal({ result }: Args) {
@@ -46,7 +46,7 @@ export function useModal({ result }: Args) {
    * Convert the '\n' to <br>.
    */
   function convertToBr(text: string) {
-    return { __html: text.replace('\n', '<br>') ?? '' };
+    return text.replace('\n', '<br>') ?? '';
   }
 
   /**

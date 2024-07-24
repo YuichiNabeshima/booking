@@ -1,6 +1,9 @@
 /* Common */
 @import '/app/styles/style.css';
 
+/* _web/style.css */
+@import '/app/routes/_web/style.css';
+
 /* Base modal */
 @import '/app/components/modal/base_modal/style.css';
 

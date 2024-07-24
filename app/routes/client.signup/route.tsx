@@ -4,7 +4,7 @@ import { getFormProps, getInputProps, useForm } from '@conform-to/react';
 import { parseWithZod } from '@conform-to/zod';
 import { schema } from './type';
 import { clientSignup } from './service.server';
-import type { ActionReturnValue } from '~/common/type';
+import type { ActionReturn } from '~/common/type';
 import style from './style.css?url';
 
 export const meta: MetaFunction = () => [
@@ -25,7 +25,7 @@ export const action: ActionFunction = async ({ request }: ActionFunctionArgs) =>
 };
 
 export default function ClientSignup() {
-  const data = useActionData<typeof action>() as ActionReturnValue | undefined;
+  const data = useActionData<typeof action>() as ActionReturn | undefined;
 
   const [form, { name, email, password, passwordConfirm }] = useForm({
     onValidate({ formData }) {

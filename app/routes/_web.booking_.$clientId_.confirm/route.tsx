@@ -1,27 +1,10 @@
 import { ActionFunction, LoaderFunction, LoaderFunctionArgs, ActionFunctionArgs, LinksFunction } from '@remix-run/node';
 import { Form, useActionData, useLoaderData } from '@remix-run/react';
 import invariant from 'tiny-invariant';
-import { loaderServer } from './loader.server';
-import { actionServer } from './action.server';
-import style from './style.css?url';
-
-export type LoaderReturns = {
-  result: {
-    clientName: string;
-    nop: string;
-    type: string;
-    course: string;
-    date: string;
-    start: string;
-    name: string;
-    email: string;
-  },
-  errorMsg: string,
-};
-
-export type ActionReturns = {
-  actionErrorMsg: string;
-};
+import { loaderServer } from './services/loader.server';
+import { getActionServer } from './services/action.server';
+import { LoaderReturn, ActionReturn } from './type';
+import style from './index.css?url';
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: style },
@@ -30,26 +13,21 @@ export const links: LinksFunction = () => [
 export const loader: LoaderFunction = async ({ request, params }: LoaderFunctionArgs) => {
   invariant(params.clientId, 'Missing params');
 
-  return loaderServer({ requestUrl: request.url, clientId: params.clientId });
+  return await loaderServer({ requestUrl: request.url, clientId: params.clientId });
 };
 
 export const action: ActionFunction = async ({ request, params }: ActionFunctionArgs ) => {
   invariant(params.clientId, 'Missing params');
 
-  const formData = await request.clone().formData();
-
-  return await actionServer({ request: {
-    formData: formData,
-    url: request.url,
-    origin: request.headers.get('origin') ?? '',
-  },
-  clientId: params.clientId,
+  return await getActionServer({
+    request,
+    clientId: params.clientId,
   });
 };
 
 export default function Index() {
-  const { result, errorMsg } = useLoaderData<typeof loader>() as LoaderReturns;
-  const actionErrorMsg = useActionData<typeof action>() as ActionReturns | null;
+  const { result, errorMsg } = useLoaderData<typeof loader>() as LoaderReturn;
+  const actionErrorMsg = useActionData<typeof action>() as ActionReturn | null;
 
   return (
     <main className="main">

@@ -1,3 +1,4 @@
+import { json } from '@remix-run/node';
 import * as modelFnClient from '~/models/fn/client';
 import * as modelFnCourse from '~/models/fn/course';
 
@@ -11,8 +12,8 @@ export async function getLoaderData({ clientId }: { clientId: string }) {
     client_id: cid,
   });
 
-  return {
+  return json({
     client,
     courses,
-  };
+  });
 }

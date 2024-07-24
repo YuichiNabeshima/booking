@@ -4,7 +4,7 @@ import * as modelFnClient from '~/models/fn/client';
 import * as modelFnCourse from '~/models/fn/course';
 import { BOOKING_TYPE } from '~/models/booking';
 
-export type DecodedReturns = {
+export type DecodedReturn = {
   nop: string;
   type: string;
   course: string;
@@ -28,7 +28,7 @@ export async function loaderServer({ requestUrl, clientId }: Args) {
     if (!token) {
       throw new Error('Missing token');
     }
-    decoded = jwt.verify(token, process.env.TOKEN_KEY as string) as DecodedReturns;
+    decoded = jwt.verify(token, process.env.TOKEN_KEY as string) as DecodedReturn;
   } catch(e) {
     if (e instanceof jwt.TokenExpiredError) {
       errorMsg = 'Token has expired';

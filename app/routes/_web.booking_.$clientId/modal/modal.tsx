@@ -2,7 +2,7 @@ import { useActionData } from '@remix-run/react';
 import { getInputProps, FieldMetadata } from '@conform-to/react';
 import { BaseModal } from '~/components/modal/base_modal/base_modal';
 import { useModal } from './hooks';
-import { ActionReturnValue } from '~/common/type';
+import { ActionReturn } from '~/common/type';
 
 type Props = {
   fullNameField: FieldMetadata;
@@ -10,7 +10,7 @@ type Props = {
 };
 
 export function Modal({ fullNameField, emailField }: Props) {
-  const result = useActionData() as ActionReturnValue;
+  const result = useActionData() as ActionReturn;
   const {
     emailContent,
     isConfirm,
@@ -54,10 +54,10 @@ export function Modal({ fullNameField, emailField }: Props) {
         <>
           <p className="pa-modal-intro">We sent email to the email you inputed.</p>
           <div className="pa-modal-note">
-            <p className="pa-modal-note__text">※Mail contents is below.<br />As this is prototype, we show the content of email.</p>
-            <p className="pa-modal-note__email">
-              <div dangerouslySetInnerHTML={convertToBr(convertToAnchor(emailContent.data ?? ''))}></div>
-            </p>
+            <div className="pa-modal-note__text">※Mail contents is below.<br />As this is prototype, we show the content of email.</div>
+            <div className="pa-modal-note__email">
+              <div dangerouslySetInnerHTML={{ __html: convertToBr(convertToAnchor(emailContent.data ?? '')) }}></div>
+            </div>
           </div>
         </>
       )}

@@ -3,7 +3,7 @@ import { Form, useActionData, Link } from '@remix-run/react';
 import { useForm, getFormProps, getInputProps } from '@conform-to/react';
 import { parseWithZod } from '@conform-to/zod';
 import { authenticator } from '~/services/auth.server';
-import { ActionReturnValue } from '~/common/type';
+import { ActionReturn } from '~/common/type';
 import { schema } from './type';
 import { clientLogin } from './service.server';
 import style from './style.css?url';
@@ -25,7 +25,7 @@ export const action: ActionFunction = async ({ request }: ActionFunctionArgs) =>
 };
 
 export default function ClientLogin() {
-  const data = useActionData<typeof action>() as ActionReturnValue;
+  const data = useActionData<typeof action>() as ActionReturn;
 
   const [form, { email, password }] = useForm({
     onValidate({ formData }) {

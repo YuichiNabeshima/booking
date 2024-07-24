@@ -1,14 +1,14 @@
 import { useLoaderData, Form, useActionData } from '@remix-run/react';
-import { LoaderFunction, LoaderFunctionArgs, ActionFunction, ActionFunctionArgs, json, LinksFunction } from '@remix-run/node';
+import { LoaderFunction, LoaderFunctionArgs, ActionFunction, ActionFunctionArgs, LinksFunction } from '@remix-run/node';
 import invariant from 'tiny-invariant';
 import { parseWithZod } from '@conform-to/zod';
 import { getFormProps, useForm } from '@conform-to/react';
-import { ActionReturnValue } from '~/common/type';
-import type { LoaderReturnValue } from './type';
+import { ActionReturn } from '~/common/type';
+import type { LoaderReturn } from './type';
 import { schema } from './schema';
 import { getLoaderData } from './services/loader.server';
 import { getActionData } from './services/action.server';
-import styles from './styles.css?url';
+import style from './index.css?url';
 import { NumberOfPeople } from './form-parts/number-of-people/number-of-people';
 import { TypeOfSeat } from './form-parts/type-of-seat/type-of-seat';
 import { Course } from './form-parts/course/course';
@@ -17,14 +17,13 @@ import { Schedule } from './form-parts/schedule/schedule';
 import { Modal } from './modal/modal';
 
 export const links: LinksFunction = () => [
-  { rel: 'stylesheet', href: styles }
+  { rel: 'stylesheet', href: style }
 ];
 
 export const loader: LoaderFunction = async ({ params }: LoaderFunctionArgs) => {
   invariant(params.clientId, 'Missing params');
-  const data = await getLoaderData({ clientId: params.clientId });
 
-  return json(data);
+  return await getLoaderData({ clientId: params.clientId });
 };
 
 export const action: ActionFunction = async ({ request, params }: ActionFunctionArgs) => {
@@ -36,8 +35,8 @@ export const action: ActionFunction = async ({ request, params }: ActionFunction
 };
 
 export default function WebBookingClientId() {
-  const { client, courses } = useLoaderData<typeof loader>() as LoaderReturnValue;
-  const result = useActionData<typeof action>() as ActionReturnValue;
+  const { client, courses } = useLoaderData<typeof loader>() as LoaderReturn;
+  const result = useActionData<typeof action>() as ActionReturn;
 
   const [ form, {
     'number-of-people': numberOfPeopleField,

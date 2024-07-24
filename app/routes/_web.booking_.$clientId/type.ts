@@ -3,7 +3,7 @@ import { Course } from '~/models/course';
 import { TimePointValue } from '~/utilis/classes/overlap/overlap';
 import { StateOfDay } from '../_web.booking_.$clientId.scheduleApi/services/get_booking_state_of_week';
 
-export type LoaderReturnValue = {
+export type LoaderReturn = {
   client: Client;
   courses: Course[];
 };
