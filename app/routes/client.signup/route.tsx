@@ -1,7 +1,8 @@
 import { Form, useActionData, Link } from '@remix-run/react';
-import { ActionFunction, ActionFunctionArgs, LinksFunction, MetaFunction } from '@remix-run/node';
+import { LoaderFunction, LoaderFunctionArgs, ActionFunction, ActionFunctionArgs, LinksFunction, MetaFunction } from '@remix-run/node';
 import { getFormProps, getInputProps, useForm } from '@conform-to/react';
 import { parseWithZod } from '@conform-to/zod';
+import { authenticator } from '~/services/auth.server';
 import { schema } from './type';
 import { clientSignup } from './service.server';
 import type { ActionReturn } from '~/common/type';
@@ -18,6 +19,13 @@ export const meta: MetaFunction = () => [
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: style },
 ];
+
+export const loader: LoaderFunction = async ({ request }: LoaderFunctionArgs) => {
+  const user = await authenticator.isAuthenticated(request, {
+    successRedirect: '/client/mypage/',
+  });
+  return user;
+};
 
 export const action: ActionFunction = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.clone().formData();

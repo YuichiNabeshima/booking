@@ -29,9 +29,9 @@ export async function clientLogin(formData: FormData, request: Request) {
   const passwordMatch = await bcrypt.compare(submission.value.password, user.password)
 
   if (passwordMatch) {
-  return await authenticator.authenticate('client-login', request, {
-    successRedirect: '/client/mypage/',
-  });
+    return await authenticator.authenticate('client-login', request, {
+      successRedirect: '/client/mypage/',
+    });
   }
 
   return json({
